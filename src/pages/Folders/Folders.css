@@ -1,0 +1,11 @@
+.outbox {
+    display: flex;
+    justify-content: center;
+}
+
+.inbox {
+    width: 80%;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
