@@ -5,7 +5,7 @@ export default function FolderInput(props) {
             <label className='inputLabel'>
                 {props.children}
                 <input name='folderName' className='inputInput' type={"text"} required />
-                <input type="submit" value="Create" />
+                <input type="submit" value={props.value} />
             </label>
         </form>
     )

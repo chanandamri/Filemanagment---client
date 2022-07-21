@@ -33,7 +33,7 @@ export default function AddFolder() {
         <div className="addButton">
             <img className='plusImg' src={plus} alt={plus} /><div>New folder</div>
         </div>
-        {active && <FolderInput onSubmit={getFolderName} >Name:</FolderInput>}
+        {active && <FolderInput value="Create" onSubmit={getFolderName} >Name:</FolderInput>}
     </div>
     )
 }

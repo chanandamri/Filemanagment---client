@@ -13,7 +13,7 @@ export default function Folders() {
     function getFolders() {
         fetch(`http://localhost:3001/api/folders/all/` + parentFolder.get("folderID"))
             .then(response => response.json())
-            .then(data => setFolders(data))
+            .then(data => setFolders(data.sort((a, b) => a - b)))
         setNewFolder(false)
     }
 

@@ -55,8 +55,8 @@ export default function Folder(props) {
                     <img className='deleteEdit' src={editIcon} alt={editIcon} onClick={() => setFolder(props.children)} />
                     <img className='deleteEdit' src={deleteIcon} alt={deleteIcon} onClick={() => handleDelete(props.children)} />
                 </div>
-                {folder && <FolderInput onSubmit={getFolderName} >New name:</FolderInput>}
             </div>
+            {folder && <FolderInput value="Rename" onSubmit={getFolderName} >New name:</FolderInput>}
         </div>
     )
 }
