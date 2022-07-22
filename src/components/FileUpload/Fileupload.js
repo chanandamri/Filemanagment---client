@@ -1,4 +1,6 @@
+import './FileUpload.css'
 import { useState } from "react";
+import axios from 'axios';
 
 export default function Fileupload() {
     const [file, setFile] = useState()
@@ -9,24 +11,25 @@ export default function Fileupload() {
     }
     function onsubmit(e) {
         e.preventDefault()
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append("fileName", file);
-        console.log(formData);
-        fetch(
-            "api", {
-            method: "post",
-            body: formData
+        // formData.append('file', file);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
         }
+
+        axios.post(
+            `http://localhost:3001/api/files/create/`, { formData }
         )
 
     }
     return (
-        <div>
-            <form onSubmit={onsubmit}>
-                <input type="file" onChange={onchange} />
+        <div className='fileOutBox'>
+            <form className='form' onSubmit={onsubmit}>
+                <input type="file" name="file" onChange={onchange} />
                 <button >submit</button>
             </form>
-            {file && <div>
+            {file && <div className="uploadData">
                 <p> file name: {file.name}</p>
                 <p>file type: {file.type}</p>
                 <p>file name: {file.size / 1000}kb</p>

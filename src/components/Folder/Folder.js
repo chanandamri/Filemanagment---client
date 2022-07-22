@@ -52,7 +52,7 @@ export default function Folder(props) {
                     {props.children}
                 </div>
                 <div className='folderIcons'>
-                    <img className='deleteEdit' src={editIcon} alt={editIcon} onClick={() => setFolder(props.children)} />
+                    <img className='deleteEdit' src={editIcon} alt={editIcon} onClick={() => folder ? setFolder() : setFolder(props.children)} />
                     <img className='deleteEdit' src={deleteIcon} alt={deleteIcon} onClick={() => handleDelete(props.children)} />
                 </div>
             </div>
