@@ -1,8 +1,13 @@
 import './FileUpload.css'
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
+import { NewFolderContext } from '../../contex/NewFolderContext';
 
 export default function Fileupload() {
+    const [parentFolder, setParentFolder] = useSearchParams()
+    const { newFolder, setNewFolder } = useContext(NewFolderContext)
+
     const [file, setFile] = useState()
     function onchange(e) {
         console.log(e.target.files);
@@ -13,20 +18,24 @@ export default function Fileupload() {
         e.preventDefault()
         let formData = new FormData();
         formData.append("fileName", file);
-        // formData.append('file', file);
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ', ' + pair[1]);
-        }
-
+        formData.append("folderParent", parentFolder.get("folderID"))
         axios.post(
-            `http://localhost:3001/api/files/create/`, { formData }
+            `http://localhost:3001/api/files/create/`, formData
         )
+            .then(res => {
+                console.log(res.data)
+                setFile(false);
+                setNewFolder(true)
+
+            }).catch(e => {
+                console.log(e)
+            })
 
     }
     return (
         <div className='fileOutBox'>
             <form className='form' onSubmit={onsubmit}>
-                <input type="file" name="file" onChange={onchange} />
+                <input className='inputfile' type="file" name="file" onChange={onchange} />
                 <button >submit</button>
             </form>
             {file && <div className="uploadData">

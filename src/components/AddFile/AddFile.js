@@ -12,29 +12,29 @@ export default function AddFile() {
     const [active, setActive] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
     function addFolder(name) {
-        axios.post(`http://localhost:3001/api/folders/create/`, {
-            folderName: name,
-            folderParent: parentFolder.get("folderID")
-        })
-            .then(res => {
-                console.log(res.data)
-                setActive(false);
-                setNewFolder(true)
+        //     axios.post(`http://localhost:3001/api/folders/create/`, {
+        //         folderName: name,
+        //         folderParent: parentFolder.get("folderID")
+        //     })
+        //         .then(res => {
+        //             console.log(res.data)
+        //             setActive(false);
+        //             setNewFolder(true)
 
-            }).catch(e => {
-                console.log(e)
-            })
-    }
-    function getFileName(e) {
-        e.preventDefault()
-        const folderName = e.target.elements.folderName.value
-        addFolder(folderName);
+        //         }).catch(e => {
+        //             console.log(e)
+        //         })
+        // }
+        // function getFileName(e) {
+        //     e.preventDefault()
+        //     const folderName = e.target.elements.folderName.value
+        //     addFolder(folderName);
     }
     return (<div className="addButtonBox" onClick={() => setActive(true)}>
         <div className="addButton">
             <img className='plusImg' src={plus} alt={plus} /><div>New file</div>
         </div>
-        {active && <Fileupload value="Create" onSubmit={getFileName} >Name:</Fileupload>}
+        {active && <Fileupload value="Create"  >Name:</Fileupload>}
     </div>
     )
 }

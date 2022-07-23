@@ -5,3 +5,7 @@
 .uploadData {
     width: 90%;
 }
+
+.inputfile {
+    display: flex;
+}
