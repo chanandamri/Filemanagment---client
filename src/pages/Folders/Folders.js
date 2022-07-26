@@ -30,7 +30,9 @@ export default function Folders() {
     useEffect(getFiles, [parentFolder, newFolder])
     console.log(files);
     function onClick(name) {
-        const newFolder = parentFolder + `***${name}`
+        console.log(parentFolder);
+        const newFolder = parentFolder + `/${name}`
+        console.log({ newFolder });
         navigate("?" + newFolder)
 
     }
