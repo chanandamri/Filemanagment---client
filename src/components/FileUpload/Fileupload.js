@@ -7,6 +7,8 @@ import { NewFolderContext } from '../../contex/NewFolderContext';
 export default function Fileupload() {
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
+    const url = "https://chanandrive.herokuapp.com/"
+
 
     const [file, setFile] = useState()
     function onchange(e) {
@@ -20,7 +22,7 @@ export default function Fileupload() {
         formData.append("fileName", file);
         formData.append("folderParent", parentFolder.get("folderID"))
         axios.post(
-            `http://localhost:3001/api/files/create/`, formData
+            encodeURI(`${url}api/files/create/`), formData
         )
             .then(res => {
                 console.log(res.data)

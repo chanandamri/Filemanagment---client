@@ -7,7 +7,7 @@ export default function Header() {
     const [folders, setFolders] = useState([])
     function createFolderLogic() {
         console.log(parentFolder.get("folderID"));
-        setFolders(parentFolder.get("folderID").split("***"))
+        setFolders(parentFolder.get("folderID").split("/"))
         console.log(folders);
     }
     useEffect(createFolderLogic, [parentFolder])

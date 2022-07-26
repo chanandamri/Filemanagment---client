@@ -8,12 +8,14 @@ import { NewFolderContext } from '../../contex/NewFolderContext'
 import FolderInput from '../FolderInput/FolderInput'
 
 export default function Folder(props) {
+    const url = "https://chanandrive.herokuapp.com/"
+
     const [folder, setFolder] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
     function handleEdit(name) {
-        axios.post(`http://localhost:3001/api/folders/edit/`, {
+        axios.post(encodeURI(`${url}api/folders/edit/`), {
             folderName: folder,
             folderParent: parentFolder.get("folderID"),
             folderNewName: name
@@ -27,7 +29,7 @@ export default function Folder(props) {
             })
     }
     function handleDelete(name) {
-        axios.post(`http://localhost:3001/api/folders/delete/`, {
+        axios.post(encodeURI(`${url}api/folders/delete/`), {
             folderName: name,
             folderParent: parentFolder.get("folderID")
         })

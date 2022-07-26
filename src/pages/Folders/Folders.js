@@ -5,6 +5,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { NewFolderContext } from '../../contex/NewFolderContext';
 
 export default function Folders() {
+    const url = "https://chanandrive.herokuapp.com/"
+    console.log("env url " + url);
+
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     let navigate = useNavigate()
     // const [parentFolder, setParentFolder] = useState('root')
@@ -12,7 +15,7 @@ export default function Folders() {
     const [folders, setFolders] = useState()
     const [files, setFiles] = useState()
     function getFiles() {
-        fetch(`http://localhost:3001/api/files/all/` + parentFolder.get("folderID"))
+        fetch(encodeURI(`${url}api/files/all/`) + parentFolder.get("folderID"))
             .then(response => response.json())
             .then(data => setFiles(data.sort((a, b) => a - b)))
         setNewFolder()
@@ -20,7 +23,7 @@ export default function Folders() {
     }
 
     function getFolders() {
-        fetch(`http://localhost:3001/api/folders/all/` + parentFolder.get("folderID"))
+        fetch(encodeURI(`${url}api/folders/all/`) + parentFolder.get("folderID"))
             .then(response => response.json())
             .then(data => setFolders(data.sort((a, b) => a - b)))
         setNewFolder()

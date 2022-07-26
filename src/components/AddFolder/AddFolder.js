@@ -10,8 +10,9 @@ export default function AddFolder() {
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     const [active, setActive] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
+    const url = process.env.BASE_URL
     function addFolder(name) {
-        axios.post(`http://localhost:3001/api/folders/create/`, {
+        axios.post(encodeURI(`${url}/api/folders/create/`), {
             folderName: name,
             folderParent: parentFolder.get("folderID")
         })
