@@ -10,7 +10,7 @@ export default function AddFolder() {
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     const [active, setActive] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
-    const url = process.env.BASE_URL
+    const url = "https://chanandrive.herokuapp.com/"
     function addFolder(name) {
         axios.post(encodeURI(`${url}/api/folders/create/`), {
             folderName: name,

@@ -10,7 +10,6 @@ export default function Folders() {
 
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     let navigate = useNavigate()
-    // const [parentFolder, setParentFolder] = useState('root')
     const [parentFolder, setParentFolder] = useSearchParams()
     const [folders, setFolders] = useState()
     const [files, setFiles] = useState()
