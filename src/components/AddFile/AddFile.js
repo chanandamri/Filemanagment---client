@@ -1,7 +1,6 @@
 import Fileupload from '../FileUpload/Fileupload'
 import './AddFile.css'
 
-import axios from 'axios'
 import { useContext, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import plus from '../../assets/plus.png'

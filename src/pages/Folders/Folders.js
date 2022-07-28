@@ -6,7 +6,7 @@ import { NewFolderContext } from '../../contex/NewFolderContext';
 
 export default function Folders() {
     const url = "https://chanandrive.herokuapp.com/"
-    console.log("env url " + url);
+    // console.log("env url " + url);
 
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     let navigate = useNavigate()
@@ -33,7 +33,7 @@ export default function Folders() {
     console.log(files);
     function onClick(name) {
         console.log(parentFolder);
-        const newFolder = parentFolder + `/${name}`
+        const newFolder = decodeURIComponent(parentFolder + `/${name}`)
         console.log({ newFolder });
         navigate("?" + newFolder)
 

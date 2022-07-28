@@ -1,0 +1,31 @@
+.headerLink {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.arrowNormal {
+    height: 13px;
+    transform: rotate(-90deg);
+    transition-duration: 200ms;
+}
+
+.arrowRotated {
+    height: 13px;
+    transition-duration: 200ms;
+
+}
+
+.headerBar {
+    height: 40px;
+    border-bottom: 1px gray solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerInternal {
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
