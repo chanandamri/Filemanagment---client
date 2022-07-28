@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Folders from "../../pages/Folders/Folders";
+import AllContent from "../../pages/AllContent/AllContent";
 
 export default function Main() {
     return (
         <Routes>
-            <Route path='/' element={<Folders />} />
+            <Route path='/' element={<AllContent />} />
         </Routes>
     )
 }

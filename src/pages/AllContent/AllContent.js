@@ -1,10 +1,10 @@
-import './Folders.css'
+import './AllContent.css'
 import { useContext, useEffect, useState } from "react";
 import Folder from "../../components/Folder/Folder";
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { NewFolderContext } from '../../contex/NewFolderContext';
 
-export default function Folders() {
+export default function AllContent() {
     const url = "https://chanandrive.herokuapp.com/"
     // console.log("env url " + url);
 
