@@ -5,7 +5,7 @@ import Header from '../components/Header.js/Header';
 
 export default function Layout() {
     return (
-        <div>
+        <div >
             <div><Header /></div>
             <div className="layout">
                 <SideBar />

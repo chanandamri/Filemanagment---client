@@ -1,0 +1,32 @@
+.folderOutBox {
+    border: 1px gray solid;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    /* height: 25px; */
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.folderInBox {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.folderIcons {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 35px;
+
+}
+
+.deleteEdit {
+    height: 12px;
+}

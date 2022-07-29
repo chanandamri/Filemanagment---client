@@ -2,3 +2,11 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.layoutOutBox {
+    display: flex;
+}
+
+.layoutInBox {
+    height: 90%;
+}
