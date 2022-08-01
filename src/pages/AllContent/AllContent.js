@@ -13,28 +13,30 @@ export default function AllContent() {
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
     const [serverData, setServerData] = useState()
-    useEffect(getData, [parentFolder, newFolder])
-
-    function getData() {
+    const [files, setFiles] = useState()
+    const [folders, setFolders] = useState()
+    useEffect(() => {
         fetch(encodeURI(`${url}api/all/`) + parentFolder.get("folderID"))
             .then(response => response.json())
-            .then(data => setServerData(data))
-        // let test = data.filter(data => data.type === "folder").map(data => data.name)
-
-        console.log({ serverData });
-        // console.log({ test });
-        console.log("all data (folders and files): " + serverData);
+            // .then(data => setServerData(data))
+            .then(data => {
+                setFiles(data.filter(data => data.type !== "folder").map(data => data.name))
+                setFolders(data.filter(data => data.type === "folder").map(data => data.name))
+            })
         setNewFolder()
-    }
-    console.log(serverData);
+
+    }, [parentFolder, newFolder])
+    console.log({ files });
+    console.log({ folders });
+
     return (
         <div>
             <div className="outbox">
                 <div className="inbox">
-                    <Folders data={serverData} /> {/*data={data.filter(data => data.type === "folder").map(data => data.name)} /> */}
+                    {folders.length > 0 && <Folders data={folders} />}
                     < br />
-                    <Files />
-                    {/* data={data.filter(data => data.type !== "folder")} /> */}
+                    {files.length > 0 && <Files data={files} />}
+
                 </div>
 
             </div>

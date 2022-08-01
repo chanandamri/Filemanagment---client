@@ -5,13 +5,12 @@ import Folder from '../Folder/Folder'
 import './Files.css'
 import { url } from "../../App"
 
-export default function Files(props) {
-    console.log("this is from files - props.data: " + props.data);
+export default function Files({ data }) {
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
     const [files, setFiles] = useState()
-    useEffect(getFiles, [parentFolder, newFolder])
+    // useEffect(getFiles, [parentFolder, newFolder])
 
     function getFiles() {
         fetch(encodeURI(`${url}api/files/all/`) + parentFolder.get("folderID"))
@@ -20,14 +19,14 @@ export default function Files(props) {
         setNewFolder()
 
     }
-    if (!files) return <div>Loading</div>
-    if (files.length === 0) return <div></div>
+    // if (!files) return <div>Loading</div>
+    // if (files.length === 0) return <div></div>
 
     return (
         <div>
             Files
             {
-                files.map(file => {
+                data.map(file => {
                     return (
                         <Folder key={file} >{file}</Folder>
                     )
