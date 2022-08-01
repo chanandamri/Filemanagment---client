@@ -9,13 +9,12 @@ import FolderInput from '../FolderInput/FolderInput'
 import { url } from "../../App"
 
 export default function Folder(props) {
-
     const [folder, setFolder] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
     function handleEdit(name) {
-        axios.post(encodeURI(`${url}api/folders/edit/`), {
+        axios.post(encodeURI(`${url}api/${props.type}/edit/`), {
             folderName: folder,
             folderParent: parentFolder.get("folderID"),
             folderNewName: name
@@ -29,7 +28,8 @@ export default function Folder(props) {
             })
     }
     function handleDelete(name) {
-        axios.post(encodeURI(`${url}api/folders/delete/`), {
+
+        axios.post(encodeURI(`${url}api/${props.type}/delete/`), {
             folderName: name,
             folderParent: parentFolder.get("folderID")
         })
@@ -38,7 +38,7 @@ export default function Folder(props) {
                 setNewFolder(true)
 
             }).catch(e => {
-                console.log(e)
+                console.log("fault fetch: " + e)
             })
     }
     function getFolderName(e) {

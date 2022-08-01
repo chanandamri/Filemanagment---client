@@ -12,15 +12,13 @@ export default function AllContent() {
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
-    const [serverData, setServerData] = useState()
-    const [files, setFiles] = useState()
-    const [folders, setFolders] = useState()
+    const [files, setFiles] = useState([])
+    const [folders, setFolders] = useState([])
     useEffect(() => {
         fetch(encodeURI(`${url}api/all/`) + parentFolder.get("folderID"))
             .then(response => response.json())
-            // .then(data => setServerData(data))
             .then(data => {
-                setFiles(data.filter(data => data.type !== "folder").map(data => data.name))
+                setFiles(data.filter(data => data.type !== "folder").map(data => data.name + "." + data.type))
                 setFolders(data.filter(data => data.type === "folder").map(data => data.name))
             })
         setNewFolder()
@@ -33,7 +31,7 @@ export default function AllContent() {
         <div>
             <div className="outbox">
                 <div className="inbox">
-                    {folders.length > 0 && <Folders data={folders} />}
+                    {/* {folders.length > 0 && <Folders data={folders} />} */}
                     < br />
                     {files.length > 0 && <Files data={files} />}
 

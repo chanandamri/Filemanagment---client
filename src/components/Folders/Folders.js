@@ -32,7 +32,7 @@ export default function Folders({ data }) {
             {
                 data.map(folder => {
                     return (
-                        <Folder key={folder} onClick={() => onClick(folder)}>{folder}</Folder>
+                        <Folder key={folder} type="folder" onClick={() => onClick(folder)}>{folder}</Folder>
                     )
                 })
             }

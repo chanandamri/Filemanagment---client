@@ -28,7 +28,7 @@ export default function Files({ data }) {
             {
                 data.map(file => {
                     return (
-                        <Folder key={file} >{file}</Folder>
+                        <Folder type="files" key={file} >{file}</Folder>
                     )
                 })
             }
