@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { NewFolderContext } from '../../../contex/NewFolderContext'
-import Folder from '../../Folder/Folder'
+import { NewFolderContext } from '../../contex/NewFolderContext'
+import Folder from '../Folder/Folder'
 import './Files.css'
+import { url } from "../../App"
 
-
-
-export default function Files() {
-    const url = "https://chanandrive.herokuapp.com/"
+export default function Files(props) {
+    console.log("this is from files - props.data: " + props.data);
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
 

@@ -6,9 +6,9 @@ import { useSearchParams } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { NewFolderContext } from '../../contex/NewFolderContext'
 import FolderInput from '../FolderInput/FolderInput'
+import { url } from "../../App"
 
 export default function Folder(props) {
-    const url = "https://chanandrive.herokuapp.com/"
 
     const [folder, setFolder] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()

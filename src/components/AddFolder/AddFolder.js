@@ -5,12 +5,12 @@ import plus from '../../assets/plus.png'
 import { NewFolderContext } from '../../contex/NewFolderContext'
 import FolderInput from '../FolderInput/FolderInput'
 import "./AddFolder.css"
+import { url } from "../../App"
 
 export default function AddFolder() {
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     const [active, setActive] = useState()
     const [parentFolder, setParentFolder] = useSearchParams()
-    const url = "https://chanandrive.herokuapp.com/"
 
     function addFolder(name) {
         axios.post(encodeURI(`${url}/api/folders/create/`), {

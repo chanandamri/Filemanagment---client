@@ -1,69 +1,40 @@
 import './AllContent.css'
-// import { useContext, useEffect, useState } from "react";
-import Folder from "../../components/Folder/Folder";
-// import { useNavigate, useSearchParams } from 'react-router-dom';
-// import { NewFolderContext } from '../../contex/NewFolderContext';
 import Folders from '../../components/Folders/Folders';
-import Files from '../../components/Folders/Files/Files';
+import Files from '../../components/Files/Files';
+
+import { useContext, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { NewFolderContext } from '../../contex/NewFolderContext'
+import { url } from "../../App"
+
 
 export default function AllContent() {
-    const url = "https://chanandrive.herokuapp.com/"
-    // console.log("env url " + url);
+    const [parentFolder, setParentFolder] = useSearchParams()
+    const { newFolder, setNewFolder } = useContext(NewFolderContext)
 
-    // const { newFolder, setNewFolder } = useContext(NewFolderContext)
-    // let navigate = useNavigate()
-    // const [parentFolder, setParentFolder] = useSearchParams()
-    // const [folders, setFolders] = useState()
-    // const [files, setFiles] = useState()
-    // function getFiles() {
-    //     fetch(encodeURI(`${url}api/files/all/`) + parentFolder.get("folderID"))
-    //         .then(response => response.json())
-    //         .then(data => setFiles(data.sort((a, b) => a - b)))
-    //     setNewFolder()
+    const [serverData, setServerData] = useState()
+    useEffect(getData, [parentFolder, newFolder])
 
-    // }
+    function getData() {
+        fetch(encodeURI(`${url}api/all/`) + parentFolder.get("folderID"))
+            .then(response => response.json())
+            .then(data => setServerData(data))
+        // let test = data.filter(data => data.type === "folder").map(data => data.name)
 
-    // function getFolders() {
-    //     fetch(encodeURI(`${url}api/folders/all/`) + parentFolder.get("folderID"))
-    //         .then(response => response.json())
-    //         .then(data => setFolders(data.sort((a, b) => a - b)))
-    //     setNewFolder()
-    // }
-
-    // useEffect(getFolders, [parentFolder, newFolder])
-    // useEffect(getFiles, [parentFolder, newFolder])
-    // console.log(files);
-    // function onClick(name) {
-    //     console.log(parentFolder);
-    //     const newFolder = decodeURIComponent(parentFolder + `/${name}`)
-    //     console.log({ newFolder });
-    //     navigate("?" + newFolder)
-
-    // }
-
-    // if (!folders || !files) return <div>Loading</div>
-    // if (folders.length === 0 && files.length === 0) return <div></div>
+        console.log({ serverData });
+        // console.log({ test });
+        console.log("all data (folders and files): " + serverData);
+        setNewFolder()
+    }
+    console.log(serverData);
     return (
         <div>
             <div className="outbox">
                 <div className="inbox">
-                    {/* {
-                        folders.map(folder => {
-                            return (
-                                <Folder key={folder} onClick={() => onClick(folder)}>{folder}</Folder>
-                            )
-                        })
-                    } */}
-                    <Folders />
-                    <br />
+                    <Folders data={serverData} /> {/*data={data.filter(data => data.type === "folder").map(data => data.name)} /> */}
+                    < br />
                     <Files />
-                    {/* {
-                        files.map(file => {
-                            return (
-                                <Folder key={file} >{file}</Folder>
-                            )
-                        })
-                    } */}
+                    {/* data={data.filter(data => data.type !== "folder")} /> */}
                 </div>
 
             </div>

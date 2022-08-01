@@ -2,17 +2,14 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { NewFolderContext } from "../../contex/NewFolderContext"
 import Folder from "../Folder/Folder"
-
+import { url } from "../../App"
 export default function Folders() {
 
-    const url = "https://chanandrive.herokuapp.com/"
-
+    // const url = "https://chanandrive.herokuapp.com/"
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
     let navigate = useNavigate()
     const [parentFolder, setParentFolder] = useSearchParams()
     const [folders, setFolders] = useState()
-
-
 
     function getFolders() {
         fetch(encodeURI(`${url}api/folders/all/`) + parentFolder.get("folderID"))
@@ -25,7 +22,7 @@ export default function Folders() {
     function onClick(name) {
         console.log(parentFolder);
         const newFolder = decodeURIComponent(parentFolder + `/${name}`)
-        console.log({ newFolder });
+        console.log("new folder route: " + newFolder);
         navigate("?" + newFolder)
     }
     if (!folders) return <div>Loading</div>

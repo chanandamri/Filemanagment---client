@@ -3,14 +3,13 @@ import { useContext, useState } from "react";
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import { NewFolderContext } from '../../contex/NewFolderContext';
+import { url } from "../../App"
 
 export default function Fileupload() {
     const [parentFolder, setParentFolder] = useSearchParams()
     const { newFolder, setNewFolder } = useContext(NewFolderContext)
-    const url = "https://chanandrive.herokuapp.com/"
-
-
     const [file, setFile] = useState()
+
     function onchange(e) {
         console.log(e.target.files);
         const filedata = e.target.files[0]
